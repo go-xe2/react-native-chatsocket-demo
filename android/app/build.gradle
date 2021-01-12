@@ -158,6 +158,10 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            resValue "string", "ChatSocketIMHost", "ws://www.mnyun.net/ws"
+            resValue "string", "ChatSocketAppKey", "5fc4f6d42c03471021639a49"
+            resValue "string", "ChatSocketAppSecret", "2o7E99A2G393n1c9I24324yh785U93Z62P4VBU07"
+            resValue "string", "ChatSocketIMHttpUrl", "https://www.mnyun.net/dev_v3/v1/im/iMSvc"
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -165,6 +169,10 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            resValue "string","ChatSocketIMHost","ws://www.mnyun.net/ws"
+            resValue "string", "ChatSocketAppKey", "5fc4f6d42c03471021639a49"
+            resValue "string", "ChatSocketAppSecret", "2o7E99A2G393n1c9I24324yh785U93Z62P4VBU07"
+            resValue "string", "ChatSocketIMHttpUrl", "https://www.mnyun.net/dev_v3/v1/im/iMSvc"
         }
     }
 
@@ -190,7 +198,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-    implementation project(':react-native-chatsocket')
+//     implementation project(':react-native-chatsocket')
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'

@@ -7576,7 +7576,12 @@ react-lifecycles-compat@^3.0.4:
 
 "react-native-chatsocket@https://github.com/go-xe2/react-native-chatsocket.git":
   version "1.0.0"
-  resolved "https://github.com/go-xe2/react-native-chatsocket.git#e7349c0b7add44e4bf492b74413a3391d0441d39"
+  resolved "https://github.com/go-xe2/react-native-chatsocket.git#ce482fd25ca23ac0c6f7c4a5e8d02160d0dc4a14"
+
+react-native-device-info@7.3.1:
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-7.3.1.tgz#6c4b0120d57872a2f7534332323306b386828a3d"
+  integrity sha512-RQP3etbmXsOlcaxHeHNug68nRli02S9iGC7TbaXpkvyyevIuRogfnrI71sWtqmlT91kdpYAOYKmNfRL9LOSKVw==
 
 react-native@0.63.4:
   version "0.63.4"
