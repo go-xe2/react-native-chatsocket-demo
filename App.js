@@ -22,7 +22,6 @@ const getDeviceInfo = () => {
   return info;
 };
 
-console.log('=====RNChatsocket>>.', chatSocket);
 const App: () => React$Node = () => {
   const socketVersion = chatSocket.getVersion();
   const imHost = chatSocket.getIMHost();
