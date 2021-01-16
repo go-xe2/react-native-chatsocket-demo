@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -16,6 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.mnyun.chatsocket.ChatManager;
+import com.mnyun.chatsocket.ChatSocketConstants;
 import com.mnyun.chatsocket.RNChatSocketPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -62,6 +64,7 @@ public class MainApplication extends Application implements ReactApplication {
             context.startActivity(appIntent);
         }
     });
+      Log.d(ChatSocketConstants.REACT_NATIVE_LOG_TAG, "app  onCreate.===>>");
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 
