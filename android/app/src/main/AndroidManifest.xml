@@ -42,6 +42,11 @@
                 <action android:name="android.intent.action.TIME_TICK" />
             </intent-filter>
         </receiver>
+        <receiver android:name="com.mnyun.chatsocket.RNChatSocketModule$ChatBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.mnyun.chatsocket.action.chat" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

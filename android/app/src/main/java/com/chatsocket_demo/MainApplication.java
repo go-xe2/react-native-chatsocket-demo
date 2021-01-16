@@ -2,14 +2,20 @@ package com.chatsocket_demo;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+
+import com.mnyun.chatsocket.ChatManager;
 import com.mnyun.chatsocket.RNChatSocketPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -46,6 +52,16 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    ChatManager.getInstance().init(this, new ChatManager.ChatManagerInitHandler() {
+        @Override
+        public void startApp(Context context, Intent intent) {
+            Intent appIntent = new Intent(context, MainActivity.class);
+            Bundle params = intent.getExtras();
+            appIntent.putExtras(params);
+            appIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(appIntent);
+        }
+    });
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 
@@ -56,8 +72,7 @@ public class MainApplication extends Application implements ReactApplication {
    * @param context
    * @param reactInstanceManager
    */
-  private static void initializeFlipper(
-      Context context, ReactInstanceManager reactInstanceManager) {
+  private static void initializeFlipper(Context context, ReactInstanceManager reactInstanceManager) {
     if (BuildConfig.DEBUG) {
       try {
         /*
