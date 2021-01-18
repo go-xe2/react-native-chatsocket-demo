@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, DeviceEventEmitter} from 'react-native';
 
 import chatSocket from 'react-native-chatsocket';
 import DeviceInfo from 'react-native-device-info';
@@ -21,6 +21,10 @@ const getDeviceInfo = () => {
   const info = {uuid, brand, model, sysVersion, sdkVersion};
   return info;
 };
+
+DeviceEventEmitter.addListener('ON_CHAT_MESSAGE', (data) => {
+  console.log('js ON_CHAT_MESSAGE:', data);
+});
 
 const App: () => React$Node = () => {
   const socketVersion = chatSocket.getVersion();

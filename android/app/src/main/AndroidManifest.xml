@@ -47,6 +47,8 @@
                 <action android:name="com.mnyun.chatsocket.action.chat" />
             </intent-filter>
         </receiver>
+        <receiver android:name="com.mnyun.chatsocket.ChatNotificationReceiver"></receiver>
+        <receiver android:name="com.mnyun.chatsocket.ShowChatNotificationReceiver"></receiver>
     </application>
 
 </manifest>

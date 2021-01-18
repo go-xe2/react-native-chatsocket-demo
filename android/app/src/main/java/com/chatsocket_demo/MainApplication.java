@@ -1,6 +1,7 @@
 package com.chatsocket_demo;
 
 import android.app.Application;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.mnyun.chatsocket.ChatManager;
+import com.mnyun.chatsocket.ChatNotificationReceiver;
 import com.mnyun.chatsocket.ChatSocketConstants;
 import com.mnyun.chatsocket.RNChatSocketPackage;
 
@@ -63,8 +65,27 @@ public class MainApplication extends Application implements ReactApplication {
             appIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(appIntent);
         }
+
+        @Override
+        public Class getNotificationReceiver() {
+            return ChatNotificationReceiver.class;
+        }
+
+        @Override
+        public ChatManager.ChatOptions getOptions() {
+            ChatManager.ChatOptions options = new ChatManager.ChatOptions();
+            options.setAppPackageName(MainApplication.this.getPackageName());
+            return options;
+        }
+
+        @Override
+        public Intent[] getNotificationStartIntents() {
+            Intent intent = new Intent(MainApplication.this, MainActivity.class);
+           intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            return new Intent[]{intent};
+        }
     });
-      Log.d(ChatSocketConstants.REACT_NATIVE_LOG_TAG, "app  onCreate.===>>");
+    Log.d(ChatSocketConstants.REACT_NATIVE_LOG_TAG, "app  onCreate.===>>");
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 
