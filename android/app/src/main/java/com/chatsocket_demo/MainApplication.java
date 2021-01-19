@@ -4,8 +4,11 @@ import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -18,8 +21,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.mnyun.chatsocket.ChatManager;
-import com.mnyun.chatsocket.ChatNotificationReceiver;
 import com.mnyun.chatsocket.ChatSocketConstants;
+import com.mnyun.chatsocket.NotificationLaunchReceiver;
 import com.mnyun.chatsocket.RNChatSocketPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -52,39 +55,17 @@ public class MainApplication extends Application implements ReactApplication {
     return mReactNativeHost;
   }
 
+  @RequiresApi(api = Build.VERSION_CODES.O)
   @Override
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
-    ChatManager.getInstance().init(this, new ChatManager.ChatManagerInitHandler() {
-        @Override
-        public void startApp(Context context, Intent intent) {
-            Intent appIntent = new Intent(context, MainActivity.class);
-            Bundle params = intent.getExtras();
-            appIntent.putExtras(params);
-            appIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            context.startActivity(appIntent);
-        }
-
-        @Override
-        public Class getNotificationReceiver() {
-            return ChatNotificationReceiver.class;
-        }
-
-        @Override
-        public ChatManager.ChatOptions getOptions() {
-            ChatManager.ChatOptions options = new ChatManager.ChatOptions();
-            options.setAppPackageName(MainApplication.this.getPackageName());
-            return options;
-        }
-
-        @Override
-        public Intent[] getNotificationStartIntents() {
-            Intent intent = new Intent(MainApplication.this, MainActivity.class);
-           intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            return new Intent[]{intent};
-        }
-    });
+    ChatManager.Options options = new ChatManager.Options();
+    options.setAppTitle("免农云");
+    options.setMainActivityName(MainActivity.class.getName());
+    options.setLaunchActivityName(MainActivity.class.getName());
+    options.setPackageName(getPackageName());
+    ChatManager.getInstance().init(this, options);
     Log.d(ChatSocketConstants.REACT_NATIVE_LOG_TAG, "app  onCreate.===>>");
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }

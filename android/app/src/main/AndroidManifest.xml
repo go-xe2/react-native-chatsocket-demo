@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
 
     <application
       android:name=".MainApplication"
@@ -33,8 +34,9 @@
             android:name="com.mnyun.chatsocket.ChatService"
             android:process=":mnyChat"
             />
-        <receiver android:name="com.mnyun.chatsocket.ChatServiceReceiver">
+        <receiver android:name="com.mnyun.chatsocket.StartChatServiceReceiver">
             <intent-filter>
+                <action android:name="com.mnyun.chatsocket.action.start"/>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.SCREEN_ON" />
                 <action android:name="android.intent.action.SCREEN_OFF" />
@@ -47,8 +49,13 @@
                 <action android:name="com.mnyun.chatsocket.action.chat" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.mnyun.chatsocket.ChatNotificationReceiver"></receiver>
-        <receiver android:name="com.mnyun.chatsocket.ShowChatNotificationReceiver"></receiver>
+        <receiver android:name="com.mnyun.chatsocket.NotificationLaunchReceiver"></receiver>
+        <receiver android:name="com.mnyun.chatsocket.ShowChatNotificationReceiver">
+            <intent-filter>
+                <action android:name="notification_cancelled"/>
+                <action android:name="notification_clicked"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

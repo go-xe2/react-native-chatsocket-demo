@@ -1,6 +1,11 @@
 package com.chatsocket_demo;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import com.facebook.react.ReactActivity;
+import com.mnyun.chatsocket.ChatManager;
+import com.mnyun.chatsocket.ChatService;
 
 public class MainActivity extends ReactActivity {
 
@@ -11,5 +16,13 @@ public class MainActivity extends ReactActivity {
   @Override
   protected String getMainComponentName() {
     return "chatsocket_demo";
+  }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    Intent serviceIntent = new Intent(this.getApplicationContext(), ChatService.class);
+    this.startService(serviceIntent);
+//    ChatManager.startChatService(this.getApplicationContext());
   }
 }
