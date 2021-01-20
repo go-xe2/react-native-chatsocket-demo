@@ -21,8 +21,8 @@ public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Intent serviceIntent = new Intent(this.getApplicationContext(), ChatService.class);
-    this.startService(serviceIntent);
-//    ChatManager.startChatService(this.getApplicationContext());
+//    Intent serviceIntent = new Intent(this.getApplicationContext(), ChatService.class);
+//    this.startService(serviceIntent);
+      ChatManager.startChatService(this.getApplicationContext());
   }
 }
