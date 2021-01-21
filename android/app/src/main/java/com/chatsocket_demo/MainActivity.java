@@ -23,6 +23,5 @@ public class MainActivity extends ReactActivity {
     super.onCreate(savedInstanceState);
 //    Intent serviceIntent = new Intent(this.getApplicationContext(), ChatService.class);
 //    this.startService(serviceIntent);
-      ChatManager.startChatService(this.getApplicationContext());
   }
 }
