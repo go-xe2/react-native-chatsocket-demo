@@ -40,9 +40,9 @@ const App: () => React$Node = () => {
     await chatSocket.saveUserNickName('管理员');
     await chatSocket.saveUserAvatarUrl('http://www.baidu.com/1.jpg');
     // 保存设备信息
-    // const info = getDeviceInfo();
-    // const res = await chatSocket.saveDeviceInfo(info);
-    // console.log('===== saveDeviceInfo:', res);
+    const info = getDeviceInfo();
+    const res = await chatSocket.saveDeviceInfo(info);
+    console.log('===== saveDeviceInfo:', res);
   };
   saveInfo();
   const token = chatSocket.getUserToken();

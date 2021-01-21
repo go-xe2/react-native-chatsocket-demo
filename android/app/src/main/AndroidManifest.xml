@@ -21,7 +21,8 @@
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
-
+    <!--华为手机设置 badgeNumber-->
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/>
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
